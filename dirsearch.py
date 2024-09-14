@@ -20,7 +20,11 @@
 
 import sys
 
-from pkg_resources import DistributionNotFound, VersionConflict
+try:
+    from importlib import resources as pkg_resources
+except ImportError:
+    # Fallback for Python versions that don't have importlib.resources
+    import pkg_resources
 
 from lib.core.data import options
 from lib.core.exceptions import FailedDependenciesInstallation
